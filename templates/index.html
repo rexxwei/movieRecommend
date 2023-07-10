@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movie Recommender</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/style.css" />
+</head>
+
+<body style="background-image: url('../static/image/bg.png');">
+
+  <div class="centered-div">
+      <h1>Movie Recommand System</h1>
+      <!-- <p>Input the movie you like</p> -->
+      <!--Make sure the form has the autocomplete function switched off:-->
+      <form autocomplete="off" name="storyForm" action="/find" method="POST">
+        <div class="autocomplete" style="width:350px;">
+          <input id="inputName" type="text" name="movieName" placeholder="Input a name" style="text-align: left;">
+        </div>
+        <input type="submit" value="Search">
+      </form>
+
+  </div>
+
+  <!-- <div class="footer">
+    <br>
+    <img src="../static/image/text.png" width="85%">
+  </div>   -->
+
+  <div class="footer">
+    <p>
+      power by: Python, SciKit Learn, WebScrape, Aure
+    </p>
+  </div>
+
+  <script src="../static/script.js"></script>
+
+</body>
+</html>

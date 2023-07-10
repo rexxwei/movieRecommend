@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.112.5" />
+    <title>Movie Recommender</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/blog/"
+    />
+    <link href="../static/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/style.css" />
+
+    <!-- Custom styles for this template -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav-scroller py-1 mb-3 border-bottom">
+        <!-- <nav class="nav nav-underline justify-content-between">
+      <a class="nav-item nav-link link-body-emphasis active" href="#">World</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">U.S.</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">Technology</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">Design</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">Culture</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">Business</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">Politics</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">Opinion</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">Science</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">Health</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">Style</a>
+      <a class="nav-item nav-link link-body-emphasis" href="#">Travel</a>
+    </nav> -->
+      </div>
+    </div>
+
+    <main class="container">
+      <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+
+        <div class="row">
+          <div class="col">
+            <img src="{{ contents[0][1] }}" width="100%" align="center">
+          </div>
+          <div class="col-10">
+              <p class="lead my-3">movies similar to</p>
+              <h2 class="display-4 fst-italic">{{ movieName }}</h2>
+              <br><br><br>
+              <form autocomplete="off" name="storyForm" action="/find" method="POST">
+                <div class="autocomplete" style="width:350px;">
+                  <input id="inputName" type="text" name="movieName" placeholder="Input a movie" style="text-align: left;">
+                </div>
+                <input type="submit" value="Search Again">
+              </form>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <!-- <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong> -->
+              <h3 class="mb-0">{{ titles[1] }}</h3>
+              <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+              <p class="card-text mb-auto overview-text">{{ contents[1][0] }}</p>
+              <!-- <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                Continue reading
+                <svg class="bi"><use xlink:href="#chevron-right"/></svg>
+              </a> -->
+            </div>
+            <div class="col-auto d-none d-lg-block">
+              <img src="{{ contents[1][1] }}" width="60%" align="right">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <!-- <strong class="d-inline-block mb-2 text-success-emphasis">Design</strong> -->
+              <h3 class="mb-0">{{ titles[2] }}</h3>
+              <!-- <div class="mb-1 text-body-secondary">Nov 11</div> -->
+              <p class="mb-auto overview-text">{{ contents[2][0] }}</p>
+              <!-- <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                Continue reading
+                <svg class="bi"><use xlink:href="#chevron-right"/></svg>
+              </a> -->
+            </div>
+            <div class="col-auto d-none d-lg-block">
+              <img src="{{ contents[2][1] }}" width="60%" align="right">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <!-- <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong> -->
+              <h3 class="mb-0">{{ titles[3] }}</h3>
+              <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+              <p class="card-text mb-auto overview-text">{{ contents[3][0] }}</p>
+              <!-- <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                Continue reading
+                <svg class="bi"><use xlink:href="#chevron-right"/></svg>
+              </a> -->
+            </div>
+            <div class="col-auto d-none d-lg-block">
+              <img src="{{ contents[3][1] }}" width="60%" align="right">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <!-- <strong class="d-inline-block mb-2 text-success-emphasis">Design</strong> -->
+              <h3 class="mb-0">{{ titles[4] }}</h3>
+              <!-- <div class="mb-1 text-body-secondary">Nov 11</div> -->
+              <p class="mb-auto overview-text">{{ contents[4][0] }}</p>
+              <!-- <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                Continue reading
+                <svg class="bi"><use xlink:href="#chevron-right"/></svg>
+              </a> -->
+            </div>
+            <div class="col-auto d-none d-lg-block">
+              <img src="{{ contents[4][1] }}" width="60%" align="right">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <!-- <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong> -->
+              <h3 class="mb-0">{{ titles[5] }}</h3>
+              <!-- <div class="mb-1 text-body-secondary">Nov 12</div> -->
+              <p class="card-text mb-auto overview-text">{{ contents[5][0] }}</p>
+              <!-- <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                Continue reading
+                <svg class="bi"><use xlink:href="#chevron-right"/></svg>
+              </a> -->
+            </div>
+            <div class="col-auto d-none d-lg-block">
+              <img src="{{ contents[5][1] }}" width="60%" align="right">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <!-- <strong class="d-inline-block mb-2 text-success-emphasis">Design</strong> -->
+              <h3 class="mb-0">{{ titles[6] }}</h3>
+              <!-- <div class="mb-1 text-body-secondary">Nov 11</div> -->
+              <p class="mb-auto overview-text">{{ contents[6][0] }}</p>
+              <!-- <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                Continue reading
+                <svg class="bi"><use xlink:href="#chevron-right"/></svg>
+              </a> -->
+            </div>
+            <div class="col-auto d-none d-lg-block">
+              <img src="{{ contents[6][1] }}" width="60%" align="right">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
+      <p class="mb-0">
+        <a href="{{url_for('index')}}">Back</a>
+      </p>
+    </footer>
+    <script src="../static/bootstrap.bundle.min.js"></script>
+  </body>
+
+  <script src="../static/script.js"></script>
+
+</html>
