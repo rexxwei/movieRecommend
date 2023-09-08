@@ -14,16 +14,22 @@ To make this project work, below libraries or features must included in your Pyt
   - SciKit-Learn
   - Pandas
   
+The dependence can be installed by execute below command
+```css
+pip install -r requirements.txt
+```
+
 
 How to Use
 ----
-Install and launch Flask.<br>
+In the project directory, run the Python file 'app.py'.<br>
+```css
+python app.py
+```
 Then open a browser and try the address like:<br>
-
 ```css
 localhost:5000
 ```
-
 
 Demo
 =========
