@@ -37,7 +37,7 @@ def recommender(title):
   scores = scores.flatten()
 
   # retrieve the top 6 recommended movies
-  recommended_idx = (-scores).argsort()[0:7]
+  recommended_idx = (-scores).argsort()[1:7]
 
   return df[['id', 'title']].iloc[recommended_idx]
 
@@ -49,15 +49,7 @@ def conTitle(title):
   return title
 
 
-def trim_sentence(sentence, length):
-    if len(sentence) <= length:
-        return sentence
-    else:
-        return sentence[:length].rsplit(' ', 1)[0] + ' ...'
-
-
-def getTextPic(id, title):
-
+def getTextPic(link):
   headers = [
                 {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/110.0'},
                 {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.115 Safari/537.36'},
@@ -65,7 +57,6 @@ def getTextPic(id, title):
                 {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'}
             ]
 
-  link = "https://www.themoviedb.org/movie/" + str(id) + "-" + conTitle(title)
   res = requests.get(url=link, headers=random.choice(headers), timeout=5)
   soup = BeautifulSoup(res.text, "html.parser")
   # Find the specific element using its tag, class, id, or other attributes
@@ -74,7 +65,6 @@ def getTextPic(id, title):
   # Extract the desired information from the element
   if element:
       overView = element.text.strip()
-      overView = trim_sentence(overView, 290)
       # print(element)
   else:
       overView = 'Content NOT found!'
@@ -89,13 +79,6 @@ def getTextPic(id, title):
 
   return [overView, posterUrl]
 
-
-def getIdByTitle(title):
-  the_id = df.loc[df["title"] == title, "id"]
-
-  return the_id
-
-
 df = pd.read_csv('tmdb_5000_movies.csv')
 movie2idx = pd.Series(df.index, index=df['title'])
 tfidf = TfidfVectorizer(max_features = 2000)
@@ -105,14 +88,13 @@ X = tfidf.fit_transform(df['string'])
 
 
 if __name__=='__main__':
-  resDF = recommender('Ant-Man')
+  resDF = recommender('The Avengers')
   ids = resDF['id'].values.tolist()
   titles = resDF['title'].values.tolist()
-  print(titles)
 
-  # links=[]
-  # for i in range(6):
-  #   link = "https://www.themoviedb.org/movie/" + str(ids[i]) + "-" + conTitle(titles[i])
-  #   links.append(link)
-  #   print(titles[i])
-  #   print(getTextPic(link))
+  links=[]
+  for i in range(6):
+    link = "https://www.themoviedb.org/movie/" + str(ids[i]) + "-" + conTitle(titles[i])
+    links.append(link)
+    print(titles[i])
+    print(getTextPic(link))

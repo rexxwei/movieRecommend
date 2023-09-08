@@ -1,0 +1,89 @@
+$ pip install -r requirements.txt
+
+1) install require lib in a venv
+
+sudo apt update
+sudo apt install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools
+
+sudo apt install python3-venv
+
+mkdir ~/myproject
+cd ~/myproject
+
+# create new env
+python3 -m venv myprojectenv
+
+# activate venv
+source myprojectenv/bin/activate
+
+Step 2 — Setting Up a Flask Application
+
+pip install wheel
+
+# install Flask and Gunicorn
+pip install gunicorn flask
+
+# update firewall setting
+sudo ufw allow 5000
+
+Step 3 - Creating the WSGI Entry Point
+
+nano ~/myproject/wsgi.py
+
+wsgi.py content:
+----------
+from app[.py name] import app[class name]
+
+if __name__ == "__main__":
+    app.run()
+----------
+
+Step 4 — Configuring Gunicorn
+
+cd ~/myproject
+gunicorn --bind 0.0.0.0:5000 wsgi:app
+
+Output
+[2020-05-20 14:13:00 +0000] [46419] [INFO] Starting gunicorn 20.0.4
+[2020-05-20 14:13:00 +0000] [46419] [INFO] Listening at: http://0.0.0.0:5000 (46419)
+[2020-05-20 14:13:00 +0000] [46419] [INFO] Using worker: sync
+[2020-05-20 14:13:00 +0000] [46421] [INFO] Booting worker with pid: 46421
+
+try visit http://your_server_ip:5000
+
+# deactivate venv
+deactivate
+
+
+Step 5 - create the systemd service unit file
+
+sudo nano /etc/systemd/system/myproject[project_name].service
+
+-----------
+[Unit]
+Description=Gunicorn instance to serve [project_name]
+After=network.target
+
+[Service]
+User=ubuntu[username]
+Group=ubuntu[usergroup]
+WorkingDirectory=/home/ubuntu/[project_name]
+Environment="PATH=/home/ubuntu/[project_name]/[project_venv]/bin"
+ExecStart=/home/ubuntu/[project_name]/[project_venv]/bin/gunicorn --bind 0.0.0.0:8080 wsgi:app
+
+[Install]
+WantedBy=multi-user.target
+-----------
+
+# reload service setting
+sudo systemctl daemon-reload
+
+sudo systemctl start myproject
+sudo systemctl enable myproject
+
+sudo systemctl status myproject
+
+
+
+
+
